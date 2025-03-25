@@ -1,0 +1,219 @@
+body {
+	background: #154360;
+	padding: 20px;
+	font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+}
+
+.titulo-agregar {
+    font-size: 18px;
+	font-weight: normal;
+    color: #ffffff;
+    background-color: #154360;
+    padding: 5px;
+    border-radius: 3px;
+	margin: 0 auto;
+    display: block; /* Hace que tome todo el ancho disponible y el margin funcione */
+    width: fit-content;
+}
+
+#agregarBtn {
+    background-color: #117a65; 
+	color: white; 
+    border: none;
+    padding: 10px; 
+	height: 40px;
+    border-radius: 5px;
+    font-size: 14px; 
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave para el cambio de color */
+    margin: 5px; /* Espaciado entre los botones */
+}
+
+/*campos de texto */
+input[type="text"] {
+    width: 30%; 
+	min-width: 240px;
+    padding: 10px; 
+    margin: 10px 0; 
+    border: 2px solid #ccc; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    outline: none; /* Elimina el borde por defecto cuando se hace foco */
+    transition: border-color 0.3s; /* Efecto de transición suave al poner el foco */
+}
+
+#agregarBtn:hover { 
+    opacity: 0.8;
+}
+
+#weatherForm {
+	display: flex; 
+	flex-wrap: wrap; 
+	padding: 10px;
+	gap: 10px; 
+	justify-content: center;
+	flex-direction: row; 
+    align-items: center; 
+}
+
+.titulo-clima {
+    font-size: 50px;
+    color: #ffffff;
+    text-align: center;
+    background-color: #2980b9;
+    padding: 10px;
+    border-radius: 5px;
+	width: 95%; 
+    margin: 0 auto; 
+	margin-bottom: 20px;
+}
+
+.container { 
+	display: flex; 
+	flex-wrap: wrap; 
+	padding: 10px;
+	gap: 10px; 
+}
+
+.card { 
+	background-color: #a9cce3;
+	display: flex; 
+	flex-direction: column;
+	justify-content: space-between;
+    height: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+	border: 1px solid #ccc; 
+	max-width: 400px;
+	padding: 15px;
+}
+
+#cardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Espacio entre tarjetas */
+    justify-content: center; 
+
+}
+
+.card h3:first-of-type {
+    font-weight: bold;
+	font-size: 26px;
+	width: 100%;
+    display: block;
+    text-align: center;
+	color: #154360;
+}
+
+.card h3:not(:first-of-type) {
+    font-weight: normal;
+	font-size: 16px;
+}
+
+.icono {
+    font-size: 34px; 
+    vertical-align: middle;
+}
+
+.card h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;  /* Espacio entre el texto y el icono */
+	margin: 1px 0;
+}
+
+.popup { 
+	display: none; 
+	position: fixed; 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%); 
+	background: white; 
+	padding: 20px; 
+	border: 1px solid #ccc; 
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	margin-top: 10px; 
+    margin-bottom: 10px; 
+	}
+	
+.popup.active { 
+	display: block; 
+	}
+
+.popup button {
+    color: white; 
+    border: none;
+    padding: 10px 15px; 
+    border-radius: 5px;
+    font-size: 14px; 
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave para el cambio de color */
+    margin: 5px; /* Espaciado entre los botones */
+}
+
+.popup button:hover {
+    background-color: #0056b3; /* Fondo azul más oscuro */
+}
+
+#cerrarBtn {
+    background-color: #dc3545; /* Rojo */
+}
+
+#cerrarBtn:hover {
+    background-color: #c82333;
+}
+
+#guardarBtn {
+    background-color: #28a745; /* Verde */
+}
+
+#guardarBtn:hover {
+    background-color: #218838; 
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; 
+    gap: 5px; /* Espaciado entre botones */
+    margin-top: 5px;
+}
+
+
+.card button { 
+    margin-top: 5px; 
+    border: none; 
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+}
+
+
+.btn-editar { background-color: #007bff; } /* Azul */
+.btn-actualizar { background-color: #28a745; } /* Verde */
+.btn-borrar { background-color: #dc3545; } /* Rojo */
+
+/*íconos*/
+.card button i {
+    color: white;
+    font-size: 14px;
+}
+
+
+.card button:hover { 
+    opacity: 0.8;
+}
+
+.popup h3 {
+	color: #2980b9;
+	font-size: 20px;
+	margin: 0; 
+    padding-bottom: 5px;
+}

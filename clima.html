@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>App de Clima</title>
+	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="estilo_clima.css">
+</head>
+<body>
+
+	<h2 class="titulo-clima">Clima🌤️</h2>
+	<h2 class="titulo-agregar">Agregar Ciudad</h2>
+    <form id="weatherForm">
+        <input type="text" id="ciudad" placeholder="Ciudad" required>
+        <button id="agregarBtn"type="submit">Agregar</button>
+    </form>
+    
+
+    <div class="container" id="cardContainer"></div>
+
+    <div id="editPopup" class="popup">
+        <h3>Editar Ciudad</h3>
+        <input type="text" id="editCiudad">
+        <button id="guardarBtn" onclick="guardarEdicion()">Guardar</button>
+		<button id="cerrarBtn" onclick="cerrarPopup()">Cancelar</button>
+    </div>
+	<script type="text/javascript" src="script_clima.js"></script>
+</body>
+</html>
