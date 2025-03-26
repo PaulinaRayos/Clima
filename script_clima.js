@@ -3,7 +3,7 @@ let tarjetas = [];
 let editIndex = null;
 
 function determinarIconoPorDescripcion(descripcion) {
-            const desc = descripcion.toLowerCase();
+            const desc = descripcion.toLowerCase();//cambia a minusculas para evitar errores en la comparacion
             if (desc.includes("tormenta")) return "⛈️";
             if (desc.includes("nieve")) return "❄️";
             if (desc.includes("lluvia") || desc.includes("llovizna") || desc.includes("chubasco")) return "🌧️";
@@ -27,9 +27,9 @@ function determinarIconoPorTemperatura(temp) {
 
 function fetchClima(ciudad, callback) {
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}&appid=${apiKey}&units=metric&lang=es`;
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
+    fetch(url) //solicitud a la url
+        .then(response => response.json())//convierte la respuesta en objeto json
+        .then(data => { //extrae los datos
             const descripcion = data.weather[0].description;
             const temperatura = data.main.temp;
                         const info = {
@@ -50,11 +50,11 @@ function fetchClima(ciudad, callback) {
 
 function cargarTarjetas() {
     const container = document.getElementById("cardContainer");
-    container.innerHTML = "";
-    tarjetas.forEach((tarjeta, index) => {
+    container.innerHTML = ""; //limpia el contenedor antes de agregar nuevas tarjetas
+    tarjetas.forEach((tarjeta, index) => { //recorre el arreglo de tarjetas
         const card = document.createElement("div");
-        card.classList.add("card");
-        card.innerHTML = `
+        card.classList.add("card"); 
+        card.innerHTML = ` 
             <h3>${tarjeta.ciudad}</h3>
             <h3><strong>Temperatura:</strong> ${tarjeta.temperatura} <span class="icono">${tarjeta.iconoTemperatura}</span></h3>
             <h3><strong>Descripción:</strong> ${tarjeta.descripcion} <span class="icono">${tarjeta.iconoDescripcion}</span></h3>
@@ -65,22 +65,22 @@ function cargarTarjetas() {
                 <button class="btn-actualizar" onclick="actualizarTarjeta(${index})" title="Actualizar"><i class="fa-solid fa-arrows-rotate"></i></button>
                 <button class="btn-borrar" onclick="borrarTarjeta(${index})" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
             </div>
-		`;
-        container.appendChild(card);
+		`; //agrega todo el html dentro de la tarjeta
+        container.appendChild(card); //agrega al contenedor la carta
     });
 }
 
 function agregarTarjeta(event) {
-    event.preventDefault();
+    event.preventDefault(); //evita que la página se recargue al hacer submit
     const ciudad = document.getElementById("ciudad").value;
     fetchClima(ciudad, (info) => {
         tarjetas.push(info);
         cargarTarjetas();
     });
-    event.target.reset();
+    event.target.reset(); // limpiar el formulario 
 }
 
-document.getElementById("weatherForm").addEventListener("submit", agregarTarjeta);
+document.getElementById("weatherForm").addEventListener("submit", agregarTarjeta); //al darle click en agregar(submit) se agrega la tarjeta
 
 function borrarTarjeta(index) {
     tarjetas.splice(index, 1);
@@ -88,16 +88,16 @@ function borrarTarjeta(index) {
 }
 
 function actualizarTarjeta(index) {
-    fetchClima(tarjetas[index].ciudad, (info) => {
-        tarjetas[index] = info;
-        cargarTarjetas();
+    fetchClima(tarjetas[index].ciudad, (info) => { //funcion que recibe la nueva informacion
+        tarjetas[index] = info; //se actualiza la informacion en info
+        cargarTarjetas(); //se actualiza la tarjeta en la interfaz
     });
 }
 
 function abrirPopup(index) {
     editIndex = index;
-    document.getElementById("editCiudad").value = tarjetas[index].ciudad;
-    document.getElementById("editPopup").classList.add("active");
+    document.getElementById("editCiudad").value = tarjetas[index].ciudad; //carga la ciudad en el popup
+    document.getElementById("editPopup").classList.add("active"); //muestra el popup
 }
 
 function cerrarPopup() {
@@ -105,19 +105,20 @@ function cerrarPopup() {
 }
 
 function guardarEdicion() {
-    const nuevaCiudad = document.getElementById("editCiudad").value;
-    fetchClima(nuevaCiudad, (info) => {
-        tarjetas[editIndex] = info;
+    const nuevaCiudad = document.getElementById("editCiudad").value; //obtiene la nueva ciudad
+    fetchClima(nuevaCiudad, (info) => { //obtiene la informacion dela nueva ciudad
+        tarjetas[editIndex] = info; //se actualiza la tarjeta, utilizando el index guardado al abrir el popup
         cargarTarjetas();
         cerrarPopup();
     });
 }
 
 window.onload = function() {
-    ["Madrid", "Buenos Aires", "Nueva York"].forEach(ciudad => {
-        fetchClima(ciudad, (info) => {
-            tarjetas.push(info);
+    ["Madrid", "Buenos Aires", "Nueva York"].forEach(ciudad => { //recorre el arreglo de las ciudades
+        fetchClima(ciudad, (info) => {//recibe la info de cada ciudad
+            tarjetas.push(info); //agrega la info al arreglo
             cargarTarjetas();
         });
     });
 };
+
